@@ -1,0 +1,85 @@
+<head>
+
+    <style>
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+          }
+          
+          .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+          }
+          
+          .content-table th,
+          .content-table td {
+            padding: 12px 15px;
+          }
+          
+          .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+          }
+          
+          .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+          }
+          
+          .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+          }
+          
+          .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+          }
+         </style>
+
+
+
+
+
+</head>
+
+{%  extends 'index.html'  %}
+
+{% block content %}
+
+
+
+
+
+
+<table class="content-table">
+    <tr class="active-row">
+        <th>اسم المريض</th>
+        <th>اسم الطبيب</th>
+        <th>حالة الحجز</th>
+        <th>نوع الكشف</th>
+        <th>تاريخ الكشف</th>
+        <th>ساعة البدء</th>
+        <th>ساعة الانتهاء</th>
+    </tr>
+    {% for x in pac %}
+     <tr >
+       <th>{{x.p_name}} </th>
+       <th>{{x.d_name}} </th>
+       <th>{{x.active}} </th>
+       <th> {{x.app_type}}</th>
+       <th> {{x.app_date}}</th>
+       <th>{{x.start_time}} </th>
+       <th>{{x.end_time}} </th>
+     </tr>
+   
+    {% endfor %}
+   </table>
+   <div style="text-align: center;">
+     <a style="text-align: center;" style="align-content:center ;" href="{% url 'insappoint'%}" class="btn btn-primary">سجل كشف</a>
+   </div>
+   {% endblock content %}

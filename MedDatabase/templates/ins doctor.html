@@ -1,0 +1,22 @@
+{%  extends 'index.html'  %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <h1 class="text-center wow fadeInUp">سجل طبيب</h1>
+    <form style="text-align:center ;" class="main-form" action="/insdoctor/" method="POST" >
+       {% csrf_token %}
+       {{ form|crispy }}
+       
+       
+   
+     </div>
+    
+   
+       <input class="btn btn-primary mt-3 wow zoomIn" type="submit" value="insert" style= "font-size:30px; "> 
+   
+    </form>
+   
+   </div>
+
+{% endblock content %}

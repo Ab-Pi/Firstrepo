@@ -1,0 +1,118 @@
+{%  extends 'index.html'  %}
+<head>
+  <style>
+    .content-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 16px;
+        width: 70%;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+      
+      .content-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+      }
+      
+      .content-table th,
+      .content-table td {
+        padding: 12px 15px;
+      }
+      
+      .content-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+      
+      .content-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+      
+      .content-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+      }
+      
+      .content-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+      }
+     </style>
+
+
+
+
+</head>
+
+
+{% block content %}
+
+<div class=" container">
+  
+    <ol class="breadcrumb">
+   
+      <li class="breadcrumb-item font-weight-bold"> <a href="{% url 'doctors'%}"> الأطباء </a></li>
+      <li class="breadcrumb-item font-weight-bold active"> {{doctor.name}}</li>
+   
+      
+   
+    </ol>
+   
+   
+</div>
+
+<h2 style="text-align:center ; padding-top:1cm ;padding-bottom: 1cm;" > بيانات الطبيب </h2>
+<table class="content-table"  style="text-align:center ;">
+    <tr class="active-row">
+      <th>الاسم</th>
+      <th>{{doctor.name}}</th>
+    </tr>
+    <tr class="active-row">
+      <th> رقم الهاتف</th>
+      <th> {{doctor.phone}}</th>
+    </tr>
+    <tr class="active-row">
+      <th>البريد الاليكترونى</th>
+      <th> {{doctor.email}}</th>
+    </tr>
+    <tr class="active-row">
+      <th>العنوان </th>
+      <th> {{doctor.current_address}}</th>
+    </tr>
+  
+  
+</table>
+
+<h2 style="text-align:center ; padding-top:1cm ;padding-bottom: 1cm;" > كشوفات الطبيب </h2>
+
+<table class="content-table">
+  <tr class="active-row">
+  
+    <th>كود الحجز</th>
+    <th>اسم الطبيب</th>
+    <th>اسم المريض</th>
+    <th>حالة الحجز</th>
+    <th>نوع الحجز</th>
+    <th>تاريخ الكشف</th>
+    <th>وقت بدء الكشف</th>
+    <th>وقت انتهاء الكشف</th>
+    <th>تاريخ تسجيل الحجز</th>
+    </tr>
+ {% for apt in doctor.fdoc.all %}
+  <tr>
+    <th>{{apt.a_id}} </th>
+    <th>{{apt.d_name}}</th>
+    <th>{{apt.p_name}}</th>
+    <th>{{apt.active}} </th>
+    <th>{{apt.app_type}} </th>
+    <th>{{apt.app_date}}</th>
+    <th>{{apt.start_time}}</th>
+    <th>{{apt.end_time}}</th>
+    <th>{{apt.appoint_book_time}}</th>
+  </tr>
+
+ {% endfor %}
+</table>
+{% endblock content %}
